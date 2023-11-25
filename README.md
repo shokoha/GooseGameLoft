@@ -16,7 +16,6 @@ What is attractive player to play / unique of the game
 story กาวๆ
 มีหลายฉากจบ (มีหลายฉากจบ)
 ----------------------------------------------------- 
-♀shokoha°º¤Yørunoº¤ø♀ — วันนี้ เวลา 21:05
 เวลาในการจบเกม : คาดว่าจประมาณ 10นาที 
 ----------------------------------------------
 Core Concept  - แรงบันดาลใจ mario, sonic turtle, odessey
