@@ -1,40 +1,80 @@
-# GooseGameLoft
+# GameScene Assets and Properties Guide
 
-Title 
+## Introduction
+This guide provides detailed information about the assets and properties used in the `GameScene` class for a Phaser game project. Each asset's name, file path, origin, scale, position, and specific animations or functions are explained.
+> to init project: [project init.md](/project%20init.md)
 
-Objective  - กระโดดข้ามแพตฟอร์ม และหลบหลีกสิ่งกีดขวางและศัตรูเพื่อไปถึงเป้าหมาย
+## Background Elements
+1. **Background (bg)**
+   - **Path:** `assets/image/game-scene/background/background-dark.png`
+   - **Origin:** (0, 0)
+   - **Scale:** Default
+   - **Position:** (0, 0)
 
-Storyline (optional) - ลูกปูน้อยผู้มีความฝัน ที่ได้ฟังนิทานของปู่ทวดของเขา
+2. **Background Layer 1 (bgLayer1)**
+   - **Path:** `assets/image/game-scene/background/bg-dark-layer1.png`
+   - **Origin:** (0, 0)
+   - **Scale:** Default
+   - **Position:** (0, 0)
 
-How to play
-1.เริ่มเกมจะเกิดที่จุดเกิด พร้อมกับเลือด 3 หัวใจ
-2.เดินไปเรื่อยๆ ระหว่างนั้นจะเจอสิ่งกีดขวางและศัตรู
-ระหว่างทางจะมี เหรียญ ให้เก็บเพื่อสะสมแต้ม
-4.เดินจนถึงจุดเป้าหมายถือเป็นการสิ้นสุดของเกม และนับ score ขึ้น leaderboard
+3. **Background Layer 2 (bgLayer2)**
+   - **Path:** `assets/image/game-scene/background/bg-dark-layer2.png`
+   - **Origin:** (0, 0)
+   - **Scale:** Default
+   - **Position:** (0, 0)
 
-What is attractive player to play / unique of the game
-story กาวๆ
-มีหลายฉากจบ (มีหลายฉากจบ)
------------------------------------------------------ 
-เวลาในการจบเกม : คาดว่าจประมาณ 10นาที 
-----------------------------------------------
-Core Concept  - แรงบันดาลใจ mario, sonic turtle, odessey
-and 
-Goals - จบเกม (ค่อยคิดเพิ่ม)
+## Cloud Platforms
+### all cloud stay in `staticGroup` calls `cloudGroup`
+1. **Cloud 1 (cloud1)**
+   - **Path:** `assets/image/game-scene/platforms/cl-long.png`
+   - **Origin:** (0, 1)
+   - **Scale:** 0.6
+   - **Position:** (100, 500)
 
-Player-Centered Design - 
-2D
-เสพเนื้อเรื่อง
-ความท้าทาย
+2. **Cloud 2 (cloud2)**
+   - **Path:** `assets/image/game-scene/platforms/cl.png`
+   - **Origin:** (1, 1)
+   - **Scale:** 0.6
+   - **Position:** (1240, 330)
 
-Consistency
-ด่านและอุปสรรค ใหม่ๆ
-scores leaderboard 
+3. **Cloud 3 (cloud3)**
+   - **Path:** `assets/image/game-scene/platforms/cl-long2.png`
+   - **Origin:** (0, 1)
+   - **Scale:** 0.6
+   - **Position:** (200, 200)
 
-Simplicity 
-กระโดดข้ามอุปสรรค์ 
-เดินทางเป็นเส้นตรง มีขึ้นลง นิดหน่อย(รึปล่าว)
-vs. Complexity
-อุปสรรค์ซับซ้อน
-ความยาก
-เงื่อนไขในการจบ ที่มีหลายฉากจบ
+## Animated Sakura
+- **Sakura (sakura)**
+  - **Path:** `assets/image/game-scene/spritesheets/sakuraAnim.png`
+  - **Origin:** (0.5, 1)
+  - **Scale:** 0.6
+  - **Position:** (890, 660)
+  - **Animation Key:** `sakuraAnim`
+  - **Frames:** From 0 to 5
+  - **Frame Rate:** 5
+  - **Repeat:** Infinite Loop
+
+## Platform Base
+- **Platform Base (platformBase)**
+  - **Path:** `assets/image/game-scene/platforms/platform-long4.png`
+  - **Origin:** (0.5, 1)
+  - **Position:** (640, 730)
+
+## Player
+- **Player (player)**
+  - **Path:** `assets/image/_dev/ufo.png`
+  - **Origin:** (0.5, 0.5)
+  - **Scale:** 0.05
+  - **Position:** (460, 360)
+  - **Size:** (2000, 1000)
+
+## Update Function
+- The `update()` function in `GameScene` continuously moves the background layers horizontally to create a parallax effect.
+  - **Background:** Moves at a speed of `0.03`
+  - **Background Layer 1:** Moves at a speed of `0.07`
+  - **Background Layer 2:** Moves at a speed of `0.1`
+
+---
+
+# Result preview
+![result](./ezgif-4-121560c83e.gif)
