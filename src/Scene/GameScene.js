@@ -63,6 +63,8 @@ class GameScene extends Phaser.Scene {
       repeat: -1
   });
     //create info
+    this.info = this.add.text(450,250,'', {font: "30px Arial", fill: "#000000" }).setDepth(5).setOrigin(0,0)
+    this.info.setScrollFactor(0,0)
     // this.textcontainer = this.add.container(player.x, 50);
     // this.info = this.add
     //   .text(player.x, 10, "", { font: "52px Arial", fill: "#000000" })
@@ -94,8 +96,8 @@ class GameScene extends Phaser.Scene {
     //Create Camera
     this.myCam = this.cameras.main;
     this.myCam.setBounds(0, 0, 1280, 720);
-    this.myCam.setZoom(1);
-
+    this.myCam.setZoom(3);
+    this.info.fixedToCamera = true;
       //platform-wall1 
     this.platforms_w1 = this.physics.add.staticGroup();
     this.platform_w1_1 = this.add.tileSprite(120,570,201,67,'platform').setOrigin(0,0).setScale(0.4);
@@ -118,11 +120,13 @@ class GameScene extends Phaser.Scene {
     this.platform_w2_6 = this.add.tileSprite(390,310,335,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_7 = this.add.tileSprite(325,370,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_8 = this.add.tileSprite(522,145,67,536,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w2_9 = this.add.tileSprite(450,339,67,670,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_9 = this.add.tileSprite(450,337,67,670,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_10 = this.add.tileSprite(325,495,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_11 = this.add.tileSprite(325,620,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_12 = this.add.tileSprite(397,430,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_13 = this.add.tileSprite(370,555,201,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_14 = this.add.tileSprite(515,563,67,268,'platform').setOrigin(0,0).setScale(0.4);
+
 
 
       //platform-wall3
@@ -142,7 +146,7 @@ class GameScene extends Phaser.Scene {
     this.platforms_w4 = this.physics.add.staticGroup();
     this.platform_w4_1 = this.add.tileSprite(925,120,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_2 = this.add.tileSprite(925,250,603,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_3 = this.add.tileSprite(1025,120,603,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_3 = this.add.tileSprite(1025,120,536,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_4 = this.add.tileSprite(1225,250,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_5 = this.add.tileSprite(1100,145,67,268,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_6 = this.add.tileSprite(975,350,670,67,'platform').setOrigin(0,0).setScale(0.4);
@@ -184,6 +188,11 @@ class GameScene extends Phaser.Scene {
     this.platforms_w2.add(this.platform_w2_7);
     this.platforms_w2.add(this.platform_w2_8);
     this.platforms_w2.add(this.platform_w2_9);
+    this.platforms_w2.add(this.platform_w2_10);
+    this.platforms_w2.add(this.platform_w2_11);
+    this.platforms_w2.add(this.platform_w2_12);
+    this.platforms_w2.add(this.platform_w2_13);
+    this.platforms_w2.add(this.platform_w2_14);
     //--------------wall3------------------//
     this.platforms_w3.add(this.platform_w3_1);
     this.platforms_w3.add(this.platform_w3_2);
@@ -209,20 +218,21 @@ class GameScene extends Phaser.Scene {
     this.platforms_w4.add(this.platform_w4_13);
     this.platforms_w4.add(this.platform_w4_14);
     this.platforms_w4.add(this.platform_w4_15);
+    this.platforms_w4.add(this.platform_w4_16);
     
     //set worldbound
     this.physics.world.setBounds(0,0,1280,720);
     this.physics.world.setBoundsCollision(true,true,true,true);
     this.player.setCollideWorldBounds(true);
 
-    //image warp
+    
     
   }
 
   update() {
-    // this.info.setText(
-    //   `Time : `
-    // );
+    this.info.setText(
+      `Time : `
+    );
 
     this.player.anims.play('playerwalk',true);
     this.warp.anims.play("warping", true);
