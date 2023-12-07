@@ -37,18 +37,32 @@ class Event1 extends Phaser.Scene {
       'collectedCoin', // listener event
       function (score1, name) { // funciton that you need to execute.
         this.score += score1
-        console.log(`Score : ${this.score}`)
+        console.log(`keys : ${this.score}`)
         console.log(name)
       },
       this //scope
+    )
+
+    this.events.on(
+      'endGame',
+      function () {
+        // TODO closing all event before load another scene.
+        this.events.off('collectedCoin')
+        this.events.off('endGame')
+        this.scene.start('Event1')
+      },
+      this
     )
    
   }
 
   update() {
+    this.playerMove();
 
-   
-    
+    // ! Endgame
+    if(this.score === 0){
+    this.events.emit('endGame')
+    }
   }
 }
 

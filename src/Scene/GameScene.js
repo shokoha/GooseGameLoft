@@ -3,7 +3,9 @@ import Event1 from "./Event1";
 
 class GameScene extends Phaser.Scene {
   constructor() {
-    super("GameScene");
+    super({
+      key: "GameScene",});
+      this.score=0
   }
 
   preload() {
@@ -42,15 +44,79 @@ class GameScene extends Phaser.Scene {
     })
     
   }
+  // -------------------------------
+  
   
 
+
+
+// createEvents() {
+//   // TODO Create an event listener for listen coin collected
+//   // TODO Create an event listener for create new coins
+//   this.events.on("createNewCoin", this.initCoins, this);
+
+//   // TODO Create an event listener for game over
+//   this.events.on("gameOver", function () {
+//     this.events.off("collectedCoin");
+//     this.events.off("createNewCoin");
+//     this.events.off("gameOver");
+//     this.scene.pause();
+//   });
+
+//   // TODO Create a timer for game over
+
+// }
+  // -------------------------------
+  
+  
+  
+
+  destroyKey1(player, key1) {
+    this.key1.destroy();
+    this.events.emit("collectedKey")
+  }
+  destroyKey2(player, key2) {
+    this.key2.destroy();
+    this.events.emit("collectedKey")
+  }
+  destroyKey3(player, key3) {
+    this.key3.destroy();
+    this.events.emit("collectedKey")
+  }
+  destroyKey4(player, key4) {
+    this.key4.destroy();
+    this.events.emit("collectedKey")
+  }
+  destroyKey5(player, key5) {
+    this.key5.destroy();
+    this.events.emit("collectedKey")
+  }
+  destroyKey6(player, key6) {
+    this.key6.destroy();
+    this.events.emit("collectedKey")
+  }
+  destroyKey7(player, key7) {
+    this.key7.destroy();
+    this.events.emit("collectedKey")
+  }
+  destroyKey8(player, key8) {
+    this.key8.destroy();
+    this.events.emit("collectedKey")
+  }
+  destroyKey9(player, key9) {
+    this.key9.destroy();
+    this.events.emit("collectedKey")
+  }
+  
+  //this.physics.add.overlap(this.player, this.keys, this.destroyKe, null, this)
+    
   create() {
     //map
     this.bg = this.add.image(640,380,'Map').setScale(3.5);
     
     
     //player
-    this.player = this.physics.add.sprite(100,620,'crabmove').setScale(1).setSize(19.5, 18).setOffset(0,0);
+    this.player = this.physics.add.sprite(1100,620,'crabmove').setScale(1).setSize(19.5, 18).setOffset(0,0);
     //920,0 checkview at wall
     //730,620 checkview at wall3
     
@@ -58,6 +124,8 @@ class GameScene extends Phaser.Scene {
     this.warps = this.physics.add.staticGroup();
     this.warp = this.add.sprite(1220,620,'warp').setSize(100, 100).setOrigin(0,0);
     this.warps.add(this.warp)
+
+    this.physics.add.overlap(this.player, this.warps)
     
     //animation
     this.anims.create({
@@ -89,7 +157,7 @@ class GameScene extends Phaser.Scene {
     });
 
     //create info
-    this.info = this.add.text(450,250,'', {font: "30px Arial", fill: "#000000" }).setDepth(5).setOrigin(0,0);
+    this.info = this.add.text(450,250,'', {font: "14px TH SarabunPSK", fill: "#000000" }).setDepth(5).setOrigin(0,0);
     this.info.setScrollFactor(0,0);
   
     //set movement
@@ -121,6 +189,17 @@ class GameScene extends Phaser.Scene {
     this.keys.add(this.key8);
     this.keys.add(this.key9);
 
+    //key overlap
+    this.physics.add.overlap(this.player, this.key1, this.destroyKey1, null, this)
+    this.physics.add.overlap(this.player, this.key2, this.destroyKey2, null, this)
+    this.physics.add.overlap(this.player, this.key3, this.destroyKey3, null, this)
+    this.physics.add.overlap(this.player, this.key4, this.destroyKey4, null, this)
+    this.physics.add.overlap(this.player, this.key5, this.destroyKey5, null, this)
+    this.physics.add.overlap(this.player, this.key6, this.destroyKey6, null, this)
+    this.physics.add.overlap(this.player, this.key7, this.destroyKey7, null, this)
+    this.physics.add.overlap(this.player, this.key8, this.destroyKey8, null, this)
+    this.physics.add.overlap(this.player, this.key9, this.destroyKey9, null, this)
+
     //floor 
     this.floor = this.add.tileSprite(0,680,2560,150,'floor5').setScale(0.5).setOrigin(0,0);
     this.floors = this.physics.add.staticGroup();
@@ -141,7 +220,7 @@ class GameScene extends Phaser.Scene {
     //Create Camera
     this.myCam = this.cameras.main;
     this.myCam.setBounds(0, 0, 1280, 720);
-    this.myCam.setZoom(1);
+    this.myCam.setZoom(3);
     this.info.fixedToCamera = true;
     
     //platform-wall1 
@@ -273,7 +352,7 @@ class GameScene extends Phaser.Scene {
     this.spikes.create(550,480,'spike-left').setOrigin(0,0).setScale(2).setSize(25,15).setOffset(7,15);
     this.spikes.create(125,150,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(95,360,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
-    this.spikes.create(823,120,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(825,120,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
 
     this.spikes.create(325,220,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
     this.spikes.create(350,90,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
@@ -292,22 +371,55 @@ class GameScene extends Phaser.Scene {
     this.spikes.create(827,550,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(624,450,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(325,330,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
-  
+    //overlap spike
+   
+    // ------------------ Event ------------------ //
+     
+     
+ 
+
+    this.events.on(
+      'collectedKey',
+      function(){
+        this.score += 1;
+        console.log(`Score : ${this.score}`);
+      },
+      this
+    )
+
+    
+
+
+    //------------------ Timer ------------------ //
+      this.timer = this.time.addEvent({
+      delay: 20000,
+      callback: () => {
+        if(this.score < this.coinsRequire){
+          console.log('Game over!')
+          this.events.emit('gameOver')
+      } else {
+          this.coinsRequire += this.coinsRequire
+      }
+      },
+      callbackScope: this,
+      loop: true
+    })
+
   }
 
   update() {
     this.info.setText(
-      `Time : `
+      `Time : ${this.score } \nScore : ${this.score}`
     );
-    this.key1.anims.play('key-float', true);
-    this.key2.anims.play('key-float', true);
-    this.key3.anims.play('key-float', true);
-    this.key4.anims.play('key-float', true);
-    this.key5.anims.play('key-float', true);
-    this.key6.anims.play('key-float', true);
-    this.key7.anims.play('key-float', true);
-    this.key8.anims.play('key-float', true);
-    this.key9.anims.play('key-float', true);
+    // this.key1.anims.play('key-float', true);
+    // this.key2.anims.play('key-float', true);
+    // this.key3.anims.play('key-float', true);
+    // this.key4.anims.play('key-float', true);
+    // this.key5.anims.play('key-float', true);
+    // this.key6.anims.play('key-float', true);
+    // this.key7.anims.play('key-float', true);
+    // this.key8.anims.play('key-float', true);
+    // this.key9.anims.play('key-float', true);
     this.player.anims.play('playerwalk',true);
     this.warp.anims.play("warping", true);
 
@@ -324,6 +436,7 @@ class GameScene extends Phaser.Scene {
     } else {
       this.player.setVelocityX(0);
     }
+    
 
     }
   }
