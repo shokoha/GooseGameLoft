@@ -28,6 +28,13 @@ class GameScene extends Phaser.Scene {
       frameHeight :64
       }
     );
+
+    this.load.spritesheet('key','assets/Collectables/Dungeon Collectables.png',{
+      frameWidth:16 ,
+      frameHeight:15.5
+    })
+
+    
   }
   
 
@@ -40,9 +47,12 @@ class GameScene extends Phaser.Scene {
     this.player = this.physics.add.sprite(100,620,'crabmove').setScale(1).setSize(19.5, 18).setOffset(0,0);
     //920,0 checkview at wall
     //730,620 checkview at wall3
+    
+    //warps
     this.warps = this.physics.add.staticGroup();
     this.warp = this.add.sprite(1220,620,'warp').setSize(100, 100).setOrigin(0,0);
     this.warps.add(this.warp)
+    
     //animation
     this.anims.create({
         key: "playerwalk",
@@ -56,25 +66,37 @@ class GameScene extends Phaser.Scene {
     this.anims.create({
       key: "warping",
       frames: this.anims.generateFrameNumbers("warp", {
-          start: 0,
-          end: 7
+        start: 0,
+        end: 7
+      }),
+      frameRate: 5,
+      repeat: -1
+    });
+    this.anims.create({
+      key: "key-float",
+      frames: this.anims.generateFrameNames("key", {
+        start: 0,
+        end: 17
       }),
       frameRate: 10,
       repeat: -1
-  });
+    });
+
     //create info
     this.info = this.add.text(450,250,'', {font: "30px Arial", fill: "#000000" }).setDepth(5).setOrigin(0,0)
     this.info.setScrollFactor(0,0)
-    // this.textcontainer = this.add.container(player.x, 50);
-    // this.info = this.add
-    //   .text(player.x, 10, "", { font: "52px Arial", fill: "#000000" })
-    //   .setDepth(10);
-    // this.textcontainer.add(this.info);
+  
     //set movement
     this.W = this.input.keyboard.addKey("w");
     this.A = this.input.keyboard.addKey("a");
     this.S = this.input.keyboard.addKey("s");
     this.D = this.input.keyboard.addKey("d");
+
+    //key setting
+    this.key1 = this.add.sprite(75,460,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key2 = this.add.sprite(540,80,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key2 = this.add.sprite(800,580,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+
 
     //floor 
     this.floor = this.add.tileSprite(0,680,2560,150,'floor5').setScale(0.5).setOrigin(0,0);
@@ -96,9 +118,10 @@ class GameScene extends Phaser.Scene {
     //Create Camera
     this.myCam = this.cameras.main;
     this.myCam.setBounds(0, 0, 1280, 720);
-    this.myCam.setZoom(3);
+    this.myCam.setZoom(1);
     this.info.fixedToCamera = true;
-      //platform-wall1 
+    
+    //platform-wall1 
     this.platforms_w1 = this.physics.add.staticGroup();
     this.platform_w1_1 = this.add.tileSprite(120,570,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w1_2 = this.add.tileSprite(50,500,201,67,'platform').setOrigin(0,0).setScale(0.4);
@@ -109,8 +132,7 @@ class GameScene extends Phaser.Scene {
     this.platform_w1_7 = this.add.tileSprite(10,200,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w1_8 = this.add.tileSprite(150,150,134,67,'platform').setOrigin(0,0).setScale(0.4);
     
-      //platform-wall2 
-   
+    //platform-wall2 
     this.platforms_w2 = this.physics.add.staticGroup();
     this.platform_w2_1 = this.add.tileSprite(325,120,335,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_2 = this.add.tileSprite(522,120,134,67,'platform').setOrigin(0,0).setScale(0.4);
@@ -129,7 +151,7 @@ class GameScene extends Phaser.Scene {
 
 
 
-      //platform-wall3
+    //platform-wall3
     this.platforms_w3 = this.physics.add.staticGroup(); 
     this.platform_w3_1 = this.add.tileSprite(720,580,268,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_2 = this.add.tileSprite(800,472,67,268,'platform').setOrigin(0,0).setScale(0.4);
@@ -138,11 +160,9 @@ class GameScene extends Phaser.Scene {
     this.platform_w3_5 = this.add.tileSprite(650,300,67,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_6 = this.add.tileSprite(750,260,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_7 = this.add.tileSprite(650,170,67,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w3_8 = this.add.tileSprite(848,120,67,67,'platform').setOrigin(0,0).setScale(0.4);
-    ;
+    this.platform_w3_8 = this.add.tileSprite(848,120,67,67,'platform').setOrigin(0,0).setScale(0.4);      
       
-      
-      //platform-wall4
+    //platform-wall4
     this.platforms_w4 = this.physics.add.staticGroup();
     this.platform_w4_1 = this.add.tileSprite(925,120,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_2 = this.add.tileSprite(925,250,603,67,'platform').setOrigin(0,0).setScale(0.4);
@@ -167,6 +187,7 @@ class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player,this.platforms_w2);
     this.physics.add.collider(this.player,this.platforms_w3);
     this.physics.add.collider(this.player,this.platforms_w4);
+    this.physics.add.collider(this.player,this.keys);
     
     //add platforms
     //--------------wall1------------------//
@@ -224,16 +245,16 @@ class GameScene extends Phaser.Scene {
     this.physics.world.setBounds(0,0,1280,720);
     this.physics.world.setBoundsCollision(true,true,true,true);
     this.player.setCollideWorldBounds(true);
+    
 
-    
-    
   }
 
   update() {
     this.info.setText(
       `Time : `
     );
-
+    this.key1.anims.play('key-float', true);
+    this.key2.anims.play('key-float', true);
     this.player.anims.play('playerwalk',true);
     this.warp.anims.play("warping", true);
 
@@ -253,6 +274,5 @@ class GameScene extends Phaser.Scene {
 
     }
   }
-
 
 export default GameScene;
