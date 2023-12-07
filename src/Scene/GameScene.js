@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import Event1 from "./Event1";
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -6,7 +7,13 @@ class GameScene extends Phaser.Scene {
   }
 
   preload() {
+    this.load.image('spike-down','assets/images/spike-down.png');
+    this.load.image('spike-up','assets/images/spike-up.png');
+    this.load.image('spike-right','assets/images/spike-right.png');
+    this.load.image('spike-left','assets/images/spike-left.png');
+
     this.load.image('crab', "assets/sprites/crabmoving.png");
+
     this.load.image('platform','assets/floor/floor1.png');
     this.load.image('floor' , 'assets/images/floor.png');
     this.load.image('floor1' , 'assets/floor/floor1.png');
@@ -33,7 +40,6 @@ class GameScene extends Phaser.Scene {
       frameWidth:16 ,
       frameHeight:15.5
     })
-
     
   }
   
@@ -83,8 +89,8 @@ class GameScene extends Phaser.Scene {
     });
 
     //create info
-    this.info = this.add.text(450,250,'', {font: "30px Arial", fill: "#000000" }).setDepth(5).setOrigin(0,0)
-    this.info.setScrollFactor(0,0)
+    this.info = this.add.text(450,250,'', {font: "30px Arial", fill: "#000000" }).setDepth(5).setOrigin(0,0);
+    this.info.setScrollFactor(0,0);
   
     //set movement
     this.W = this.input.keyboard.addKey("w");
@@ -93,10 +99,27 @@ class GameScene extends Phaser.Scene {
     this.D = this.input.keyboard.addKey("d");
 
     //key setting
+    this.keys = this.physics.add.staticGroup();
     this.key1 = this.add.sprite(75,460,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
     this.key2 = this.add.sprite(540,80,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
-    this.key2 = this.add.sprite(800,580,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
-
+    this.key3 = this.add.sprite(325,645,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key4 = this.add.sprite(835,465,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key5 = this.add.sprite(475,440,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key6 = this.add.sprite(645,350,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key7 = this.add.sprite(1245,370,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key8 = this.add.sprite(925,420,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key9 = this.add.sprite(950,650,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    
+    //key group
+    this.keys.add(this.key1);
+    this.keys.add(this.key2);
+    this.keys.add(this.key3);
+    this.keys.add(this.key4);
+    this.keys.add(this.key5);
+    this.keys.add(this.key6);
+    this.keys.add(this.key7);
+    this.keys.add(this.key8);
+    this.keys.add(this.key9);
 
     //floor 
     this.floor = this.add.tileSprite(0,680,2560,150,'floor5').setScale(0.5).setOrigin(0,0);
@@ -148,7 +171,7 @@ class GameScene extends Phaser.Scene {
     this.platform_w2_12 = this.add.tileSprite(397,430,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_13 = this.add.tileSprite(370,555,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_14 = this.add.tileSprite(515,563,67,268,'platform').setOrigin(0,0).setScale(0.4);
-
+    this.platform_w2_15 = this.add.tileSprite(478,471,67,67, 'platform').setOrigin(0,0).setScale(0.4);
 
 
     //platform-wall3
@@ -173,13 +196,12 @@ class GameScene extends Phaser.Scene {
     this.platform_w4_7 = this.add.tileSprite(925,455,603,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_8 = this.add.tileSprite(1216,375,67,268,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_9 = this.add.tileSprite(960,520,804,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_10 = this.add.tileSprite(942,630,67,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_11 = this.add.tileSprite(970,575,67,268,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_12 = this.add.tileSprite(1022,549,67,268,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_10 = this.add.tileSprite(953,629,67,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_11 = this.add.tileSprite(980,575,67,268,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_12 = this.add.tileSprite(1040,546,67,268,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_13 = this.add.tileSprite(1150,575,67,268,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_14 = this.add.tileSprite(1100,590,67,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_15 = this.add.tileSprite(1050,630,67,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_16 = this.add.tileSprite(950,180,67,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_14 = this.add.tileSprite(1100,610,67,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_15 = this.add.tileSprite(950,180,67,67,'platform').setOrigin(0,0).setScale(0.4);
   
     //add collider
     this.physics.add.collider(this.player,this.walls);
@@ -187,7 +209,7 @@ class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player,this.platforms_w2);
     this.physics.add.collider(this.player,this.platforms_w3);
     this.physics.add.collider(this.player,this.platforms_w4);
-    this.physics.add.collider(this.player,this.keys);
+    this.physics.add.collider(this.player,this.spikes);
     
     //add platforms
     //--------------wall1------------------//
@@ -214,6 +236,7 @@ class GameScene extends Phaser.Scene {
     this.platforms_w2.add(this.platform_w2_12);
     this.platforms_w2.add(this.platform_w2_13);
     this.platforms_w2.add(this.platform_w2_14);
+    this.platforms_w2.add(this.platform_w2_15);
     //--------------wall3------------------//
     this.platforms_w3.add(this.platform_w3_1);
     this.platforms_w3.add(this.platform_w3_2);
@@ -239,14 +262,37 @@ class GameScene extends Phaser.Scene {
     this.platforms_w4.add(this.platform_w4_13);
     this.platforms_w4.add(this.platform_w4_14);
     this.platforms_w4.add(this.platform_w4_15);
-    this.platforms_w4.add(this.platform_w4_16);
     
     //set worldbound
     this.physics.world.setBounds(0,0,1280,720);
     this.physics.world.setBoundsCollision(true,true,true,true);
     this.player.setCollideWorldBounds(true);
     
+    //spike
+    this.spikes = this.physics.add.staticGroup()
+    this.spikes.create(550,480,'spike-left').setOrigin(0,0).setScale(2).setSize(25,15).setOffset(7,15);
+    this.spikes.create(125,150,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(95,360,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(823,120,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
 
+    this.spikes.create(325,220,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(350,90,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1120,650,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1110,425,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(973,222,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1000,222,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1130,222,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(325,465,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+
+    this.spikes.create(747,499,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
+    this.spikes.create(1250,276,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
+    this.spikes.create(1010,378,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
+    this.spikes.create(420,456,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
+
+    this.spikes.create(827,550,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(624,450,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(325,330,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+  
   }
 
   update() {
@@ -255,6 +301,13 @@ class GameScene extends Phaser.Scene {
     );
     this.key1.anims.play('key-float', true);
     this.key2.anims.play('key-float', true);
+    this.key3.anims.play('key-float', true);
+    this.key4.anims.play('key-float', true);
+    this.key5.anims.play('key-float', true);
+    this.key6.anims.play('key-float', true);
+    this.key7.anims.play('key-float', true);
+    this.key8.anims.play('key-float', true);
+    this.key9.anims.play('key-float', true);
     this.player.anims.play('playerwalk',true);
     this.warp.anims.play("warping", true);
 
