@@ -366,8 +366,6 @@ class GameScene extends Phaser.Scene {
     this.spikes.create(924,280,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(624,245,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(624,119,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
-   
-  
     // ------------------ Event ------------------ //
     this.events.on(
       'collectedKey',
