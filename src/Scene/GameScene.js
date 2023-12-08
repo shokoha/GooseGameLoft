@@ -116,7 +116,8 @@ class GameScene extends Phaser.Scene {
     
     
     //player
-    this.player = this.physics.add.sprite(1100,620,'crabmove').setScale(1).setSize(19.5, 18).setOffset(0,0);
+    this.player = this.physics.add.sprite(1200,620,'crabmove').setScale(1).setSize(19.5, 18).setOffset(0,0);
+    //50,620 checkview at wall
     //920,0 checkview at wall
     //730,620 checkview at wall3
     
@@ -157,7 +158,7 @@ class GameScene extends Phaser.Scene {
     });
 
     //create info
-    this.info = this.add.text(450,250,'', {font: "14px TH SarabunPSK", fill: "#000000" }).setDepth(5).setOrigin(0,0);
+    this.info = this.add.text(450,250,'', {font: "14px TH SarabunPSK", fill: "#000000", backgroundColor: "rgba(255,255,255,0.75)", padding: 3}).setDepth(5).setOrigin(0,0);
     this.info.setScrollFactor(0,0);
   
     //set movement
@@ -251,7 +252,6 @@ class GameScene extends Phaser.Scene {
     this.platform_w2_13 = this.add.tileSprite(370,555,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_14 = this.add.tileSprite(515,563,67,268,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_15 = this.add.tileSprite(478,471,67,67, 'platform').setOrigin(0,0).setScale(0.4);
-
 
     //platform-wall3
     this.platforms_w3 = this.physics.add.staticGroup(); 
@@ -350,29 +350,29 @@ class GameScene extends Phaser.Scene {
     //spike
     this.spikes = this.physics.add.staticGroup()
     this.spikes.create(550,480,'spike-left').setOrigin(0,0).setScale(2).setSize(25,15).setOffset(7,15);
-    this.spikes.create(125,150,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
-    this.spikes.create(95,360,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
-    this.spikes.create(825,120,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(127,149,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(97,358,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(825,119,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
 
-    this.spikes.create(325,220,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(350,90,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(1120,650,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(1110,425,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(973,222,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(1000,222,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(1130,222,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(325,465,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(325,221,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(350,91,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1120,651,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1110,426,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(973,221,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1000,221,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1130,221,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(325,466,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
 
     this.spikes.create(747,499,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
     this.spikes.create(1250,276,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
-    this.spikes.create(1010,378,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
+    this.spikes.create(1010,377,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
     this.spikes.create(420,456,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
 
-    this.spikes.create(827,550,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(826,550,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(624,450,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
-    this.spikes.create(325,330,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(324,330,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     //overlap spike
-   
+  
     // ------------------ Event ------------------ //
      
      
@@ -386,10 +386,27 @@ class GameScene extends Phaser.Scene {
       },
       this
     )
+    this.events.on(
+      "endGame",
+      function () {
+        this.score = 0;
+        this.events.off("endGame");
+        this.scene.pause();
+        this.infoend = this.add.text(560,330,'', {font: "40px TH SarabunPSK", fill: "#000000",backgroundColor: "#FFF", padding: 20 }).setDepth(5).setOrigin(0,0);
+        this.infoend.setScrollFactor(0,0);
+        this.infoend.setText(`END GAME`);
+      },
+      this
+    );
 
-    
-
-
+    this.physics.add.overlap(this.player, this.warps, () =>{
+      if(this.score === 9){
+      this.events.emit('endGame')
+      }
+    })
+    this.physics.add.overlap(this.player,this.spikes,() => {
+      this.player.setPosition(50,620,0,0);
+    })
     //------------------ Timer ------------------ //
       this.timer = this.time.addEvent({
       delay: 20000,
@@ -405,6 +422,9 @@ class GameScene extends Phaser.Scene {
       loop: true
     })
 
+
+
+    
   }
 
   update() {
