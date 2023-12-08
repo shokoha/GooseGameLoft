@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import Event1 from "./Event1";
+
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -47,32 +47,7 @@ class GameScene extends Phaser.Scene {
     })
     
   }
-  // -------------------------------
-  
-  
 
-
-
-// createEvents() {
-//   // TODO Create an event listener for listen coin collected
-//   // TODO Create an event listener for create new coins
-//   this.events.on("createNewCoin", this.initCoins, this);
-
-//   // TODO Create an event listener for game over
-//   this.events.on("gameOver", function () {
-//     this.events.off("collectedCoin");
-//     this.events.off("createNewCoin");
-//     this.events.off("gameOver");
-//     this.scene.pause();
-//   });
-
-//   // TODO Create a timer for game over
-
-// }
-  // -------------------------------
-  
-  
-  
 
   destroyKey1(player, key1) {
     
@@ -116,7 +91,7 @@ class GameScene extends Phaser.Scene {
     this.events.emit("collectedKey");
   }
   
-  //this.physics.add.overlap(this.player, this.keys, this.destroyKe, null, this)
+
     
   create() {
     //map
@@ -386,14 +361,13 @@ class GameScene extends Phaser.Scene {
     this.spikes.create(1010,377,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
     this.spikes.create(420,456,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
     
-
     this.spikes.create(827,550,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(624,450,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(324,330,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(924,280,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(624,245,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(624,119,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
-    //overlap spike
+   
   
     // ------------------ Event ------------------ //
     this.events.on(
@@ -415,7 +389,6 @@ class GameScene extends Phaser.Scene {
         this.infoend.setText(`END GAME`);
         this.banner = this.add.image(1070,580, "banner").setScale(0.1);
         this.button = this.add.image(1070,660, "restartbutton").setDepth(6).setScale(0.07);
-       
       },
       this
     );
@@ -428,6 +401,7 @@ class GameScene extends Phaser.Scene {
     this.physics.add.overlap(this.player,this.spikes,() => {
       this.player.setPosition(50,620,0,0);
     });
+    
     //key animation
     this.key1.anims.play('key-float', true);
     this.key2.anims.play('key-float', true);

@@ -19,10 +19,7 @@ const config = {
         }
     },
     scene: [
-        
-        GameScene,
-        Event1,
-        //InputClass
+        GameScene
     ]
 }
 let game = new Phaser.Game(config);
