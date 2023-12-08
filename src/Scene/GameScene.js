@@ -24,7 +24,10 @@ class GameScene extends Phaser.Scene {
     this.load.image('floor4' , 'assets/floor/floor4.png');
     this.load.image('floor5' , 'assets/floor/floor5.png');
     
-    this.load.image('Map','assets/images/underwater-fantasy-preview.png')
+    this.load.image('Map','assets/images/underwater-fantasy-preview.png');
+
+    this.load.image('restartbutton', 'assets/images/restart.png');
+    this.load.image('banner', 'assets/images/banner.png');
     
     this.load.spritesheet("crabmove", "assets/sprites/crabmoving.png",{
       frameWidth: 19.5,
@@ -73,39 +76,39 @@ class GameScene extends Phaser.Scene {
 
   destroyKey1(player, key1) {
     this.key1.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   destroyKey2(player, key2) {
     this.key2.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   destroyKey3(player, key3) {
     this.key3.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   destroyKey4(player, key4) {
     this.key4.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   destroyKey5(player, key5) {
     this.key5.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   destroyKey6(player, key6) {
     this.key6.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   destroyKey7(player, key7) {
     this.key7.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   destroyKey8(player, key8) {
     this.key8.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   destroyKey9(player, key9) {
     this.key9.destroy();
-    this.events.emit("collectedKey")
+    this.events.emit("collectedKey");
   }
   
   //this.physics.add.overlap(this.player, this.keys, this.destroyKe, null, this)
@@ -116,7 +119,7 @@ class GameScene extends Phaser.Scene {
     
     
     //player
-    this.player = this.physics.add.sprite(1200,620,'crabmove').setScale(1).setSize(19.5, 18).setOffset(0,0);
+    this.player = this.physics.add.sprite(50,620,'crabmove').setScale(1).setSize(19.5, 18).setOffset(0,0);
     //50,620 checkview at wall
     //920,0 checkview at wall
     //730,620 checkview at wall3
@@ -126,7 +129,7 @@ class GameScene extends Phaser.Scene {
     this.warp = this.add.sprite(1220,620,'warp').setSize(100, 100).setOrigin(0,0);
     this.warps.add(this.warp)
 
-    this.physics.add.overlap(this.player, this.warps)
+    this.physics.add.overlap(this.player, this.warps);
     
     //animation
     this.anims.create({
@@ -171,7 +174,7 @@ class GameScene extends Phaser.Scene {
     this.keys = this.physics.add.staticGroup();
     this.key1 = this.add.sprite(75,460,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
     this.key2 = this.add.sprite(540,80,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
-    this.key3 = this.add.sprite(325,645,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
+    this.key3 = this.add.sprite(323,645,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
     this.key4 = this.add.sprite(835,465,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
     this.key5 = this.add.sprite(475,440,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
     this.key6 = this.add.sprite(645,350,'key').setSize(100, 100).setOrigin(0,0).setScale(2);
@@ -191,15 +194,15 @@ class GameScene extends Phaser.Scene {
     this.keys.add(this.key9);
 
     //key overlap
-    this.physics.add.overlap(this.player, this.key1, this.destroyKey1, null, this)
-    this.physics.add.overlap(this.player, this.key2, this.destroyKey2, null, this)
-    this.physics.add.overlap(this.player, this.key3, this.destroyKey3, null, this)
-    this.physics.add.overlap(this.player, this.key4, this.destroyKey4, null, this)
-    this.physics.add.overlap(this.player, this.key5, this.destroyKey5, null, this)
-    this.physics.add.overlap(this.player, this.key6, this.destroyKey6, null, this)
-    this.physics.add.overlap(this.player, this.key7, this.destroyKey7, null, this)
-    this.physics.add.overlap(this.player, this.key8, this.destroyKey8, null, this)
-    this.physics.add.overlap(this.player, this.key9, this.destroyKey9, null, this)
+    this.physics.add.overlap(this.player, this.key1, this.destroyKey1, null, this);
+    this.physics.add.overlap(this.player, this.key2, this.destroyKey2, null, this);
+    this.physics.add.overlap(this.player, this.key3, this.destroyKey3, null, this);
+    this.physics.add.overlap(this.player, this.key4, this.destroyKey4, null, this);
+    this.physics.add.overlap(this.player, this.key5, this.destroyKey5, null, this);
+    this.physics.add.overlap(this.player, this.key6, this.destroyKey6, null, this);
+    this.physics.add.overlap(this.player, this.key7, this.destroyKey7, null, this);
+    this.physics.add.overlap(this.player, this.key8, this.destroyKey8, null, this);
+    this.physics.add.overlap(this.player, this.key9, this.destroyKey9, null, this);
 
     //floor 
     this.floor = this.add.tileSprite(0,680,2560,150,'floor5').setScale(0.5).setOrigin(0,0);
@@ -210,7 +213,7 @@ class GameScene extends Phaser.Scene {
     //wall
     this.walls = this.physics.add.staticGroup();
     this.wall1 = this.add.tileSprite(300,400,70,800,'floor1').setScale(0.7);
-    this.wall2 = this.add.tileSprite(600,325,70,800,'floor1').setScale(0.7);
+    this.wall2 = this.add.tileSprite(600,323,70,800,'floor1').setScale(0.7);
     this.wall3 = this.add.tileSprite(900,400,70,800,'floor1').setScale(0.7);
     this.wall4 = this.add.tileSprite(640,0,4300,300,'floor3').setScale(0.3);
     this.walls.add(this.wall1);
@@ -237,49 +240,49 @@ class GameScene extends Phaser.Scene {
     
     //platform-wall2 
     this.platforms_w2 = this.physics.add.staticGroup();
-    this.platform_w2_1 = this.add.tileSprite(325,120,335,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_1 = this.add.tileSprite(324,120,335,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_2 = this.add.tileSprite(522,120,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_3 = this.add.tileSprite(415,180,268,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w2_4 = this.add.tileSprite(325,250,268,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w2_5 = this.add.tileSprite(468,250,134,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_4 = this.add.tileSprite(324,250,268,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_5 = this.add.tileSprite(469,250,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_6 = this.add.tileSprite(390,310,335,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w2_7 = this.add.tileSprite(325,370,201,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w2_8 = this.add.tileSprite(522,145,67,536,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_7 = this.add.tileSprite(324,370,201,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_8 = this.add.tileSprite(522,146,67,536,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_9 = this.add.tileSprite(450,337,67,670,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w2_10 = this.add.tileSprite(325,495,134,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w2_11 = this.add.tileSprite(325,620,201,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_10 = this.add.tileSprite(324,495,134,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_11 = this.add.tileSprite(324,620,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_12 = this.add.tileSprite(397,430,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_13 = this.add.tileSprite(370,555,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w2_14 = this.add.tileSprite(515,563,67,268,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w2_15 = this.add.tileSprite(478,471,67,67, 'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w2_15 = this.add.tileSprite(476,471,67,67,'platform').setOrigin(0,0).setScale(0.4);
 
     //platform-wall3
     this.platforms_w3 = this.physics.add.staticGroup(); 
-    this.platform_w3_1 = this.add.tileSprite(720,580,268,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w3_1 = this.add.tileSprite(720,579,268,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_2 = this.add.tileSprite(800,472,67,268,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_3 = this.add.tileSprite(747,472,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_4 = this.add.tileSprite(700,390,134,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_5 = this.add.tileSprite(650,300,67,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_6 = this.add.tileSprite(750,260,201,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w3_7 = this.add.tileSprite(650,170,67,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w3_8 = this.add.tileSprite(848,120,67,67,'platform').setOrigin(0,0).setScale(0.4);      
+    this.platform_w3_8 = this.add.tileSprite(849,120,67,67,'platform').setOrigin(0,0).setScale(0.4); 
       
     //platform-wall4
     this.platforms_w4 = this.physics.add.staticGroup();
-    this.platform_w4_1 = this.add.tileSprite(925,120,134,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_2 = this.add.tileSprite(925,250,603,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_1 = this.add.tileSprite(924,120,134,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_2 = this.add.tileSprite(924,252,603,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_3 = this.add.tileSprite(1025,120,536,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_4 = this.add.tileSprite(1225,250,134,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_5 = this.add.tileSprite(1100,145,67,268,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_4 = this.add.tileSprite(1226,250,134,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_5 = this.add.tileSprite(1100,146,67,268,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_6 = this.add.tileSprite(975,350,670,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_7 = this.add.tileSprite(925,455,603,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_8 = this.add.tileSprite(1216,375,67,268,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_7 = this.add.tileSprite(924,455,603,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_8 = this.add.tileSprite(1216,376,67,268,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_9 = this.add.tileSprite(960,520,804,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_10 = this.add.tileSprite(953,629,67,67,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_11 = this.add.tileSprite(980,575,67,268,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_12 = this.add.tileSprite(1040,546,67,268,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_13 = this.add.tileSprite(1150,575,67,268,'platform').setOrigin(0,0).setScale(0.4);
-    this.platform_w4_14 = this.add.tileSprite(1100,610,67,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_10 = this.add.tileSprite(953,628,67,67,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_11 = this.add.tileSprite(980,574,67,268,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_12 = this.add.tileSprite(1040.5,546,67,268,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_13 = this.add.tileSprite(1150,574,67,268,'platform').setOrigin(0,0).setScale(0.4);
+    this.platform_w4_14 = this.add.tileSprite(1095,615,67,67,'platform').setOrigin(0,0).setScale(0.4);
     this.platform_w4_15 = this.add.tileSprite(950,180,67,67,'platform').setOrigin(0,0).setScale(0.4);
   
     //add collider
@@ -348,36 +351,33 @@ class GameScene extends Phaser.Scene {
     this.player.setCollideWorldBounds(true);
     
     //spike
-    this.spikes = this.physics.add.staticGroup()
+    this.spikes = this.physics.add.staticGroup();
     this.spikes.create(550,480,'spike-left').setOrigin(0,0).setScale(2).setSize(25,15).setOffset(7,15);
     this.spikes.create(127,149,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(97,358,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
-    this.spikes.create(825,119,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(826,119,'spike-left').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
 
     this.spikes.create(325,221,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
     this.spikes.create(350,91,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
     this.spikes.create(1120,651,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
     this.spikes.create(1110,426,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(973,221,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(1000,221,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
-    this.spikes.create(1130,221,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(973,223,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1000,223,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(1130,223,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
     this.spikes.create(325,466,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
+    this.spikes.create(952.2,599,'spike-up').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(17,15);
 
     this.spikes.create(747,499,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
     this.spikes.create(1250,276,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
     this.spikes.create(1010,377,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
     this.spikes.create(420,456,'spike-down').setOrigin(0,0).setScale(1.8).setSize(15,25).setOffset(16,8);
 
-    this.spikes.create(826,550,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
+    this.spikes.create(827,550,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(624,450,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     this.spikes.create(324,330,'spike-right').setOrigin(0,0).setScale(1.8).setSize(25,15).setOffset(7,15);
     //overlap spike
   
     // ------------------ Event ------------------ //
-     
-     
- 
-
     this.events.on(
       'collectedKey',
       function(){
@@ -392,9 +392,12 @@ class GameScene extends Phaser.Scene {
         this.score = 0;
         this.events.off("endGame");
         this.scene.pause();
-        this.infoend = this.add.text(560,330,'', {font: "40px TH SarabunPSK", fill: "#000000",backgroundColor: "#FFF", padding: 20 }).setDepth(5).setOrigin(0,0);
+        this.infoend = this.add.text(583,330,'', {font: "23px Arial", fill: "#0f536d", fontWeight: 400}).setDepth(5).setOrigin(0,0);
         this.infoend.setScrollFactor(0,0);
         this.infoend.setText(`END GAME`);
+        this.banner = this.add.image(1070,580, "banner").setScale(0.1);
+        this.button = this.add.image(1070,660, "restartbutton").setDepth(6).setScale(0.07);
+       
       },
       this
     );
@@ -403,33 +406,16 @@ class GameScene extends Phaser.Scene {
       if(this.score === 9){
       this.events.emit('endGame')
       }
-    })
+    });
     this.physics.add.overlap(this.player,this.spikes,() => {
       this.player.setPosition(50,620,0,0);
-    })
-    //------------------ Timer ------------------ //
-      this.timer = this.time.addEvent({
-      delay: 20000,
-      callback: () => {
-        if(this.score < this.coinsRequire){
-          console.log('Game over!')
-          this.events.emit('gameOver')
-      } else {
-          this.coinsRequire += this.coinsRequire
-      }
-      },
-      callbackScope: this,
-      loop: true
-    })
-
-
-
+    });
     
   }
 
-  update() {
+  update(time, delta) {
     this.info.setText(
-      `Time : ${this.score } \nScore : ${this.score}`
+      `Time : ${Math.floor(time / 1000)} \nScore : ${this.score}`
     );
     // this.key1.anims.play('key-float', true);
     // this.key2.anims.play('key-float', true);
